@@ -6,25 +6,15 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
-public class Choose_Name_1P extends AppCompatActivity {
+public class Choose_Name_2P extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_name_1p);
+        setContentView(R.layout.activity_choose__name_2_p);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Button button = findViewById(R.id.playButton);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-            }
-        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -34,5 +24,7 @@ public class Choose_Name_1P extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 }
