@@ -8,6 +8,18 @@
     tools:context="comaveryscottnorris.httpsgithub.team4sconnect4.Choose_Name_2P"
     tools:showIn="@layout/activity_choose__name_2_p">
 
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="252dp"
+        android:layout_height="81dp"
+        android:text="@string/play"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806" />
+
     <RadioGroup
         android:id="@+id/GridList"
         android:layout_width="145dp"
@@ -52,31 +64,23 @@
 
     </RadioGroup>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="357dp" />
-
     <EditText
-        android:id="@+id/Player1_2P"
+        android:id="@+id/player1_2P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Player 1"
+        android:text="@string/player_one"
         tools:layout_editor_absoluteX="72dp"
         tools:layout_editor_absoluteY="38dp" />
 
     <EditText
-        android:id="@+id/Player2_2P"
+        android:id="@+id/player2_2P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Player 2"
+        android:text="@string/player2default"
         tools:layout_editor_absoluteX="72dp"
         tools:layout_editor_absoluteY="97dp" />
 

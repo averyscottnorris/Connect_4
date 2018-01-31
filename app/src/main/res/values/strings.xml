@@ -8,4 +8,5 @@
     <string name="gridSize2">7x8 Grid</string>
     <string name="gridSize1">6x7 Grid</string>
     <string name="title_activity_choose__name_2_p">Choose Names</string>
+    <string name="player2default">Player 2</string>
 </resources>
