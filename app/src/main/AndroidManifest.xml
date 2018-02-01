@@ -22,6 +22,7 @@
         <activity
             android:name=".Choose_Name_1P"
             android:label="@string/title_activity_choose__name_1_p"
+            android:parentActivityName=".Main_Menu"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

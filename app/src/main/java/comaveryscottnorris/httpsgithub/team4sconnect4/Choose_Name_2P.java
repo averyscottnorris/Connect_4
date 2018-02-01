@@ -28,33 +28,26 @@ public class Choose_Name_2P extends AppCompatActivity {
             public void onClick(View view) {
                 // Determine which size was selected;
                 int selectedButtonID = radioGroup.getCheckedRadioButtonId();
-                int columns;
-                int rows;
+                Intent myIntent;
 
                 // Set columns and rows based on size selected
                 if(selectedButtonID == R.id.radioButtonSize1) {
-                    columns = 7;
-                    rows = 6;
+                    myIntent = new Intent(Choose_Name_2P.this, PLAYGAMEPLACEHOLDER.class);
                 }
                 else if(selectedButtonID == R.id.radioButtonSize2) {
-                    columns = 8;
-                    rows = 7;
+                    myIntent = new Intent(Choose_Name_2P.this, PLAYGAMEPLACEHOLDER.class);
                 }
                 else {
-                    columns = 10;
-                    rows = 8;
+                    myIntent = new Intent(Choose_Name_2P.this, PLAYGAMEPLACEHOLDER.class);
                 }
 
                 //Save player names from text boxes
                 EditText player1Name = findViewById(R.id.player1_2P);
                 EditText player2Name = findViewById(R.id.player2_2P);
-                Intent myIntent = new Intent(Choose_Name_2P.this, PLAYGAMEPLACEHOLDER.class);
 
                 // Add information to send to new activity
                 myIntent.putExtra("player1Name", player1Name.toString());
                 myIntent.putExtra("player2Name", player2Name.toString());
-                myIntent.putExtra("columns",  columns);
-                myIntent.putExtra("rows", rows);
                 startActivity(myIntent);
             }
         });
