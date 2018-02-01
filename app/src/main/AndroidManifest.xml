@@ -19,6 +19,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Choose_Name_1P"
+            android:label="@string/title_activity_choose__name_1_p"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Choose_Name_2P"
+            android:label="@string/title_activity_choose__name_2_p"
+            android:parentActivityName=".Main_Menu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="comaveryscottnorris.httpsgithub.team4sconnect4.Main_Menu" />
+        </activity>
     </application>
 
 </manifest>

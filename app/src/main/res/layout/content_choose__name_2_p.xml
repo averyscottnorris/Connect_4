@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="comaveryscottnorris.httpsgithub.team4sconnect4.Choose_Name_2P"
+    tools:showIn="@layout/activity_choose__name_2_p">
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="252dp"
+        android:layout_height="81dp"
+        android:text="@string/play"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806" />
+
+    <RadioGroup
+        android:id="@+id/GridList"
+        android:layout_width="145dp"
+        android:layout_height="125dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.497">
+
+        <RadioButton
+            android:id="@+id/radioButtonSize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/gridSize1"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="205dp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSize2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/gridSize2"
+            app:layout_constraintBottom_toTopOf="@+id/GridList"
+            app:layout_constraintEnd_toStartOf="@+id/GridList"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/GridList"
+            app:layout_constraintTop_toBottomOf="@+id/GridList" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSize3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/gridSize3"
+            tools:layout_editor_absoluteX="243dp"
+            tools:layout_editor_absoluteY="205dp" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/player1_2P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/player_one"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <EditText
+        android:id="@+id/player2_2P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/player2default"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="97dp" />
+
+</android.support.constraint.ConstraintLayout>
