@@ -14,7 +14,7 @@
         android:layout_below="@+id/backtoMenu"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:text="The Connect 4 Board Game Rules are easy to understand. In fact, it is in the name. To win Connect Four, all you have to do is connect four of your colored checker pieces in a row, much the same as tic tac toe. This can be done horizontally, vertically or diagonally. Each player will drop in one checker piece at a time. This will give you a chance to either build your row, or stop your opponent from getting four in a row." />
+        android:text="ConnectFour is a two-player connection game in which the players first choose a color and then take turns dropping colored discs from the top into a seven-column, six-row vertically suspended grid." />
 
     <Button
         android:id="@+id/backtoMenu"
