@@ -32,13 +32,13 @@ public class Choose_Name_2P extends AppCompatActivity {
 
                 // Set columns and rows based on size selected
                 if(selectedButtonID == R.id.radioButtonSize1) {
-                    myIntent = new Intent(Choose_Name_2P.this, PLAYGAMEPLACEHOLDER.class);
+                    myIntent = new Intent(Choose_Name_2P.this, GameActivity.class);
                 }
                 else if(selectedButtonID == R.id.radioButtonSize2) {
-                    myIntent = new Intent(Choose_Name_2P.this, PLAYGAMEPLACEHOLDER.class);
+                    myIntent = new Intent(Choose_Name_2P.this, GameActivity.class);
                 }
                 else {
-                    myIntent = new Intent(Choose_Name_2P.this, PLAYGAMEPLACEHOLDER.class);
+                    myIntent = new Intent(Choose_Name_2P.this, GameActivity.class);
                 }
 
                 //Save player names from text boxes
