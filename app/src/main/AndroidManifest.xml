@@ -45,7 +45,6 @@
             android:name=".Help"></activity>
         <activity
             android:name=".About"></activity>
-
     </application>
 
 </manifest>
