@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/help"
     tools:context="comaveryscottnorris.httpsgithub.team4sconnect4.Choose_Name_2P">
 
     <android.support.design.widget.AppBarLayout
