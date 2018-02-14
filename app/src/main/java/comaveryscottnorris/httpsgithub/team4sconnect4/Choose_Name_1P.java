@@ -35,10 +35,10 @@ public class Choose_Name_1P extends AppCompatActivity {
                     myIntent = new Intent(Choose_Name_1P.this, GameActivity.class);
                 }
                 else if(selectedButtonID == R.id.radioButtonSize2) {
-                    myIntent = new Intent(Choose_Name_1P.this, GameActivity.class);
+                    myIntent = new Intent(Choose_Name_1P.this, ai.class);
                 }
                 else {
-                    myIntent = new Intent(Choose_Name_1P.this, GameActivity.class);
+                    myIntent = new Intent(Choose_Name_1P.this, GameActivity_1088.class);
                 }
                 EditText player1Name = findViewById(R.id.player1_1P);
 

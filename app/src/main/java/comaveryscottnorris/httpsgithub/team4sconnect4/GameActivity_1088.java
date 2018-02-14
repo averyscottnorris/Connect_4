@@ -1,12 +1,7 @@
 package comaveryscottnorris.httpsgithub.team4sconnect4;
 
-/**
- * Created by kavinarasu on 1/30/18.
- */
-
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,15 +13,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class GameActivity extends Activity {
-    private ImageView[][] cells = null;
-    private View boardView;
-    private Board board;
+import java.util.ArrayList;
+
+/**
+ * Created by kavinarasu on 2/13/18.
+ */
+
+public class GameActivity_1088 extends AppCompatActivity{
+    private ImageView[][] cells2 = null;
+    private View boardView2;
+    private Board_1088 board2;
     //private LinearLayout mlinearLayout;
-    private ViewHolder viewHolder = null;
-    private static int NUM_ROWS = 6;
-    private static int NUM_COLS = 7;
+    private GameActivity.ViewHolder viewHolder = null;
+    private static int NUM_ROWS = 8;
+    private static int NUM_COLS = 10;
     public static final String TAG = "GameActivity";
+
 
     public static class ViewHolder {
         public TextView winnerText;
@@ -37,15 +39,15 @@ public class GameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-        viewHolder = new ViewHolder();
-        board = new Board(NUM_COLS, NUM_ROWS);
-        boardView = findViewById(R.id.game_board);
+        setContentView(R.layout.activity_game_1088);
+        viewHolder = new GameActivity.ViewHolder();
+        board2 = new Board_1088(NUM_COLS, NUM_ROWS);
+        boardView2 = findViewById(R.id.game_board);
         buildCells();
         Log.d(TAG,"Oncreate");
         // TODO :  Dynamic Cell creation
         //mlinearLayout = new LinearLayout(R.id.);
-        boardView.setOnTouchListener(new View.OnTouchListener() {
+        boardView2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
@@ -93,16 +95,16 @@ public class GameActivity extends Activity {
 
     private void buildCells() {
 
-            cells = new ImageView[NUM_ROWS][NUM_COLS];
-        if (cells != null) {
+        cells2 = new ImageView[NUM_ROWS][NUM_COLS];
+        if (cells2 != null) {
             Log.d(TAG, " entered");
             for (int r = 0; r < NUM_ROWS; r++) {
-                ViewGroup row = (ViewGroup) ((ViewGroup) boardView).getChildAt(r);
+                ViewGroup row = (ViewGroup) ((ViewGroup) boardView2).getChildAt(r);
                 row.setClipChildren(false);
                 for (int c = 0; c < NUM_COLS; c++) {
                     ImageView imageView = (ImageView) row.getChildAt(c);
                     imageView.setImageResource(android.R.color.transparent);
-                    cells[r][c] = imageView;
+                    cells2[r][c] = imageView;
                 }
             }
         }
@@ -113,12 +115,12 @@ public class GameActivity extends Activity {
     }
 
     private void drop(int col) {
-        if (board.hasWinner)
+        if (board2.hasWinner)
             return;
-        int row = board.lastAvailableRow(col);
+        int row = board2.lastAvailableRow(col);
         if (row == -1)
             return;
-        final ImageView cell = cells[row][col];
+        final ImageView cell = cells2[row][col];
         float move = -(cell.getHeight() * row + cell.getHeight() + 15);
         cell.setY(move);
         cell.setImageResource(resourceForTurn());
@@ -126,35 +128,40 @@ public class GameActivity extends Activity {
         anim.setDuration(850);
         anim.setFillAfter(true);
         cell.startAnimation(anim);
-        board.occupyCell(col, row);
-        if (board.checkForWin(col, row)) {
+        board2.occupyCell(col, row);
+        if (board2.checkForWin(col, row)) {
             win();
+
         } else {
             changeTurn();
         }
     }
 
     private void win() {
-        int color = board.turn == Board.Turn.FIRST ? getResources().getColor(R.color.primary_player) : getResources().getColor(R.color.secondary_player);
+        int color = (board2.turn == Board_1088.Turn.FIRST) ? getResources().getColor(R.color.primary_player) : getResources().getColor(R.color.secondary_player);
         viewHolder.winnerText.setTextColor(color);
         viewHolder.winnerText.setVisibility(View.VISIBLE);
+        //ArrayList<ImageView> winseq = board2.getWinDiscs(cells2);
+        //ArrayList<ImageView> winDiscs = board2.getWinDiscs(boardView2.);
+
+
     }
 
     private void changeTurn() {
-        board.toggleTurn();
+        board2.toggleTurn();
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
     }
 
     private int colAtX(float x) {
-        float colWidth = cells[0][0].getWidth();
+        float colWidth = cells2[0][0].getWidth();
         int col = (int) x / (int) colWidth;
-        if (col < 0 || col > 6)
+        if (col < 0 || col > 10)
             return -1;
         return col;
     }
 
     private int resourceForTurn() {
-        switch (board.turn) {
+        switch (board2.turn) {
             case FIRST:
                 return R.drawable.red;
             case SECOND:
@@ -164,13 +171,14 @@ public class GameActivity extends Activity {
     }
 
     private void reset() {
-        board.reset();
+        board2.reset();
         viewHolder.winnerText.setVisibility(View.GONE);
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
         for (int r=0; r<NUM_ROWS; r++) {
             for (int c=0; c<NUM_COLS; c++) {
-                cells[r][c].setImageResource(android.R.color.transparent);
+                cells2[r][c].setImageResource(android.R.color.transparent);
             }
         }
     }
+
 }
