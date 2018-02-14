@@ -1,23 +1,14 @@
 package comaveryscottnorris.httpsgithub.team4sconnect4;
 
-import android.support.annotation.NonNull;
-import android.widget.ImageView;
-
-import java.util.ArrayList;
-
 /**
- * Created by kavinarasu on 1/30/18.
+ * Created by kavinarasu on 1/31/18.
  */
 
-public class Board {
+public class Board_78 {
     private int numCols;
     private int numRows;
     public boolean hasWinner;
-    public Cell[][] cells;
-    private int WIN_X = 0;
-    private int WIN_Y = 0;
-    private int p, q;
-
+    public Cell_78[][] cells_78;
 
     public enum Turn {
         FIRST, SECOND
@@ -25,10 +16,10 @@ public class Board {
 
     public Turn turn;
 
-    public Board(int cols, int rows) {
+    public Board_78(int cols, int rows) {
         numCols = cols;
         numRows = rows;
-        cells = new Cell[cols][rows];
+        cells_78 = new Cell_78[cols][rows];
         reset();
     }
 
@@ -37,14 +28,14 @@ public class Board {
         turn = Turn.FIRST;
         for (int col = 0; col < numCols; col++) {
             for (int row = 0; row < numRows; row++) {
-                cells [col][row] = new Cell();
+                cells_78 [col][row] = new Cell_78();
             }
         }
     }
 
     public int lastAvailableRow(int col) {
         for (int row = numRows - 1; row >= 0; row--) {
-            if (cells[col][row].empty) {
+            if (cells_78[col][row].empty) {
                 return row;
             }
         }
@@ -52,7 +43,7 @@ public class Board {
     }
 
     public void occupyCell(int col, int row) {
-        cells[col][row].setPlayer(turn);
+        cells_78[col][row].setPlayer(turn);
     }
 
     public void toggleTurn() {
@@ -79,15 +70,6 @@ public class Board {
         return false;
     }
 
-    @NonNull
-    public ArrayList<ImageView> getWinDiscs(ImageView[][] cells1) {
-        ArrayList<ImageView> combination = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            combination.add(cells1[p + WIN_Y * i][q + WIN_X * i]);
-        }
-        return combination;
-    }
-
     private boolean isContiguous(Turn player, int dirX, int dirY, int col, int row, int count) {
         if (count >= 4) {
             return true;
@@ -95,7 +77,7 @@ public class Board {
         if (col < 0 || col >= numCols || row < 0 || row >= numRows) {
             return false;
         }
-        Cell cell = cells[col][row];
+        Cell_78 cell = cells_78[col][row];
         if (cell.player == player) {
             return isContiguous(player, dirX, dirY, col + dirX, row + dirY, count + 1);
         } else {

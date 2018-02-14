@@ -50,6 +50,11 @@
             android:name=".Help"></activity>
         <activity
             android:name=".About"></activity>
-    </application>
+        <activity android:name=".ai" />
+        <activity android:name=".GameActivity_1088"
+            >
+
+        </activity>
+ </application>
 
 </manifest>
