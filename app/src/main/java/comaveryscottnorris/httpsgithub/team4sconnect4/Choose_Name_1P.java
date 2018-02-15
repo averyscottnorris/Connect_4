@@ -43,7 +43,7 @@ public class Choose_Name_1P extends AppCompatActivity {
                 EditText player1Name = findViewById(R.id.player1_1P);
 
                 // Add information to send to new activity
-                myIntent.putExtra("player1Name", player1Name.toString());
+                myIntent.putExtra("player1Name", player1Name.getText().toString());
                 startActivity(myIntent);
             }
         });
