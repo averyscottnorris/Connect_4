@@ -46,8 +46,8 @@ public class Choose_Name_2P extends AppCompatActivity {
                 EditText player2Name = findViewById(R.id.player2_2P);
 
                 // Add information to send to new activity
-                myIntent.putExtra("player1Name", player1Name.toString());
-                myIntent.putExtra("player2Name", player2Name.toString());
+                myIntent.putExtra("player1Name", player1Name.getText().toString());
+                myIntent.putExtra("player2Name", player2Name.getText().toString());
                 startActivity(myIntent);
             }
         });

@@ -1,6 +1,10 @@
 package comaveryscottnorris.httpsgithub.team4sconnect4;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -59,7 +63,7 @@ public class ai extends AppCompatActivity {
                 return true;
             }
         });
-        Button resetButton = (Button) findViewById(R.id.reset_button);
+        Button resetButton = findViewById(R.id.reset_button);
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,9 +71,9 @@ public class ai extends AppCompatActivity {
             }
         });
 
-        viewHolder1.turnIndicatorImageView = (ImageView) findViewById(R.id.turn_indicator_image_view);
+        viewHolder1.turnIndicatorImageView = findViewById(R.id.turn_indicator_image_view);
         viewHolder1.turnIndicatorImageView.setImageResource(resourceForTurn());
-        viewHolder1.winnerText = (TextView) findViewById(R.id.winner_text);
+        viewHolder1.winnerText = findViewById(R.id.winner_text);
         viewHolder1.winnerText.setVisibility(View.GONE);
 
     }
@@ -138,6 +142,10 @@ public class ai extends AppCompatActivity {
         int color = board1.turn == Board_78.Turn.FIRST ? getResources().getColor(R.color.primary_player) : getResources().getColor(R.color.secondary_player);
         viewHolder1.winnerText.setTextColor(color);
         viewHolder1.winnerText.setVisibility(View.VISIBLE);
+        // Changes by Avery
+        updateScores((board1.turn == Board_78.Turn.FIRST) ? getPlayerOneName() : getPlayerTwoName());
+        alert((board1.turn == Board_78.Turn.FIRST) ? getPlayerOneName() : getPlayerTwoName());
+        // End of Avery's changes
     }
 
     private void changeTurn() {
@@ -173,5 +181,47 @@ public class ai extends AppCompatActivity {
             }
         }
     }
+
+
+    // Added by Avery Norris
+    private void updateScores(String playerName) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        int score;
+
+        score = preferences.getInt(playerName, 0);
+        score++;
+        editor.putInt(playerName, score);
+        editor.apply();
+    }
+
+    private void alert(String playerName) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("New Score!");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int score = preferences.getInt(playerName, 0);
+        String print = playerName + "'s score is now: " + score + "!";
+        alertDialog.setMessage(print);
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.show();
+    }
+
+    private String getPlayerOneName() {
+        Bundle extras = getIntent().getExtras();
+        String name = extras.getString("player1name", "Player 1");
+        return name;
+    }
+
+    private String getPlayerTwoName() {
+        Bundle extras = getIntent().getExtras();
+        String name = extras.getString("player2name", "Player 2");
+        return name;
+    }
+    // End of Avery's new functions
 }
 
