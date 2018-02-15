@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="comaveryscottnorris.httpsgithub.team4sconnect4.Main_Menu">
+    android:background="@drawable/help"
+    tools:context="comaveryscottnorris.httpsgithub.team4sconnect4.Choose_Name_2P">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main__menu" />
+    <include layout="@layout/content_choose__name_2_p" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Team 4\'s Connect 4</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_choose__name_1_p">Choose Name</string>
+    <string name="play">Play!</string>
+    <string name="player_one">Player 1</string>
+    <string name="gridSize3">8x10 Grid</string>
+    <string name="gridSize2">7x8 Grid</string>
+    <string name="gridSize1">6x7 Grid</string>
+    <string name="title_activity_choose__name_2_p">Choose Names</string>
+    <string name="player2default">Player 2</string>
+    <string name="hello_world">Hello world!</string>
 </resources>
