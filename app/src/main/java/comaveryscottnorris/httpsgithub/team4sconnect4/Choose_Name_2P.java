@@ -29,6 +29,7 @@ public class Choose_Name_2P extends AppCompatActivity {
                 // Determine which size was selected;
                 int selectedButtonID = radioGroup.getCheckedRadioButtonId();
                 Intent myIntent;
+                Bundle bundle = new Bundle();
 
                 // Set columns and rows based on size selected
                 if(selectedButtonID == R.id.radioButtonSize1) {
@@ -46,8 +47,9 @@ public class Choose_Name_2P extends AppCompatActivity {
                 EditText player2Name = findViewById(R.id.player2_2P);
 
                 // Add information to send to new activity
-                myIntent.putExtra("player1Name", player1Name.getText().toString());
-                myIntent.putExtra("player2Name", player2Name.getText().toString());
+                bundle.putString("PLAYER1NAME", String.valueOf(player1Name.getText()));
+                bundle.putString("PLAYER2NAME", String.valueOf(player2Name.getText()));
+                myIntent.putExtras(bundle);
                 startActivity(myIntent);
             }
         });

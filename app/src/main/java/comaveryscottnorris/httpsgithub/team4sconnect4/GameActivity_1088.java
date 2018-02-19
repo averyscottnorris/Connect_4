@@ -154,7 +154,7 @@ public class GameActivity_1088 extends AppCompatActivity{
         // End of Avery's changes
     }
 
-    private void changeTurn() {git
+    private void changeTurn() {
         board2.toggleTurn();
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
     }
@@ -219,13 +219,13 @@ public class GameActivity_1088 extends AppCompatActivity{
 
     private String getPlayerOneName() {
         Bundle extras = getIntent().getExtras();
-        String name = extras.getString("player1name", "Player 1");
+        String name = extras.getString("PLAYER1NAME", "Player 1");
         return name;
     }
 
     private String getPlayerTwoName() {
         Bundle extras = getIntent().getExtras();
-        String name = extras.getString("player2name", "Player 2");
+        String name = extras.getString("PLAYER2NAME", "Player 2");
         return name;
     }
     // End of Avery's new functions

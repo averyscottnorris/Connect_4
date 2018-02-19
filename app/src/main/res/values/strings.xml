@@ -10,4 +10,7 @@
     <string name="title_activity_choose__name_2_p">Choose Names</string>
     <string name="player2default">Player 2</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_high__scores">High Scores</string>
+    <string name="top_5_high_scores">Top 5 High Scores</string>
+    <string name="name_score">Name      -      Score</string>
 </resources>
