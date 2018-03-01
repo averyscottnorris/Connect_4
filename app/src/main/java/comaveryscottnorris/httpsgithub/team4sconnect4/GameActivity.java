@@ -212,13 +212,13 @@ public class GameActivity extends Activity {
 
     private String getPlayerOneName() {
         Bundle extras = getIntent().getExtras();
-        String name = extras.getString("player1name", "Player 1");
+        String name = extras.getString("PLAYER1NAME", "Player 1");
         return name;
     }
 
     private String getPlayerTwoName() {
         Bundle extras = getIntent().getExtras();
-        String name = extras.getString("player2name", "Player 2");
+        String name = extras.getString("PLAYER2NAME", "Player 2");
         return name;
     }
     // End of Avery's new functions

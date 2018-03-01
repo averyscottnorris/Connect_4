@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity  {
 
     public Button aboutButton;
     public Button helpButton;
+    public Button highscoreButton;
     Button singlePlayerButton;
     Button doublePlayerButton;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
       //  init();
-        aboutButton=(Button) findViewById(R.id.aboutButton);
+        aboutButton= findViewById(R.id.aboutButton);
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,16 +33,24 @@ public class MainActivity extends AppCompatActivity  {
         });
 
 
-        helpButton =(Button) findViewById(R.id.helpButton);
+        helpButton = findViewById(R.id.helpButton);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent toy=new Intent(MainActivity.this,Help.class);
                 startActivity(toy);
-
             }
         });
-        singlePlayerButton=(Button) findViewById(R.id.singlePlayer);
+
+        highscoreButton= findViewById(R.id.highscoreButton);
+        highscoreButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent toy=new Intent(MainActivity.this, High_Scores.class);
+                startActivity(toy);
+            }
+        });
+
+        singlePlayerButton= findViewById(R.id.singlePlayer);
         singlePlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +60,7 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
-        doublePlayerButton=(Button) findViewById(R.id.doublePlayer);
+        doublePlayerButton= findViewById(R.id.doublePlayer);
         doublePlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

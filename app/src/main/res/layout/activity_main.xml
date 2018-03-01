@@ -33,6 +33,18 @@
         android:text="ABOUT" />
 
     <Button
+        android:id="@+id/highscoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignBaseline="@+id/aboutButton"
+        android:layout_alignBottom="@+id/aboutButton"
+        android:layout_alignEnd="@+id/singlePlayer"
+        android:layout_marginEnd="33dp"
+        android:text="High Scores" />
+
+    <Button
         android:id="@+id/helpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
