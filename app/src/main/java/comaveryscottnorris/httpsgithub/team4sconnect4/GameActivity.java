@@ -35,6 +35,9 @@ public class GameActivity extends Activity {
 
     public static class ViewHolder {
         public TextView winnerText;
+        // Changes by Avery
+        public TextView currentPlayer;
+        // End Every's Changes
         public ImageView turnIndicatorImageView;
     }
 
@@ -74,6 +77,10 @@ public class GameActivity extends Activity {
 
         viewHolder.turnIndicatorImageView = findViewById(R.id.turn_indicator_image_view);
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
+        // Changes by Avery
+        viewHolder.currentPlayer = findViewById(R.id.playerName);
+        viewHolder.currentPlayer.setText("   " + getPlayerOneName());
+        // End avery's changes
         viewHolder.winnerText = findViewById(R.id.winner_text);
         viewHolder.winnerText.setVisibility(View.GONE);
     }
@@ -150,6 +157,15 @@ public class GameActivity extends Activity {
 
     private void changeTurn() {
         board.toggleTurn();
+        // Changes by Avery
+        viewHolder.currentPlayer = findViewById(R.id.playerName);
+        if (board.turn == Board.Turn.FIRST) {
+            viewHolder.currentPlayer.setText("   " + getPlayerOneName());
+        }
+        else {
+            viewHolder.currentPlayer.setText("   " + getPlayerTwoName());
+        }
+        // End Avery's Changes
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
     }
 
@@ -174,6 +190,9 @@ public class GameActivity extends Activity {
     private void reset() {
         board.reset();
         viewHolder.winnerText.setVisibility(View.GONE);
+        // Change by Avery
+        viewHolder.currentPlayer.setText("   " + getPlayerOneName());
+        // End Avery's Changes
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
         for (int r=0; r<NUM_ROWS; r++) {
             for (int c=0; c<NUM_COLS; c++) {
