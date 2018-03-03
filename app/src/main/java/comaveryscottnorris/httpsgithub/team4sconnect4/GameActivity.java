@@ -160,7 +160,7 @@ public class GameActivity extends Activity {
             return -1;
         return col;
     }
-
+ 
     private int resourceForTurn() {
         switch (board.turn) {
             case FIRST:

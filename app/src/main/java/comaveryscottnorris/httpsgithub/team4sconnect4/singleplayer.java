@@ -1,7 +1,13 @@
 package comaveryscottnorris.httpsgithub.team4sconnect4;
 
+/**
+ * Created by kavinarasu on 2/28/18.
+ */
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,41 +23,33 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
-/**
- * Created by kavinarasu on 2/13/18.
- */
-
-public class GameActivity_1088 extends AppCompatActivity{
-    private ImageView[][] cells2 = null;
-    private View boardView2;
-    private Board_1088 board2;
-    //private LinearLayout mlinearLayout;
+public class singleplayer extends AppCompatActivity {
+    private ImageView[][] cells = null;
+    private View boardView;
+    private Board board;
     private GameActivity.ViewHolder viewHolder = null;
-    private static int NUM_ROWS = 8;
-    private static int NUM_COLS = 10;
+    private static int NUM_ROWS = 6;
+    private static int NUM_COLS = 7;
     public static final String TAG = "GameActivity";
-
 
     public static class ViewHolder {
         public TextView winnerText;
         public ImageView turnIndicatorImageView;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_1088);
+        setContentView(R.layout.activity_game);
         viewHolder = new GameActivity.ViewHolder();
-        board2 = new Board_1088(NUM_COLS, NUM_ROWS);
-        boardView2 = findViewById(R.id.game_board);
+        board = new Board(NUM_COLS, NUM_ROWS);
+        boardView = findViewById(R.id.game_board);
         buildCells();
         Log.d(TAG,"Oncreate");
         // TODO :  Dynamic Cell creation
         //mlinearLayout = new LinearLayout(R.id.);
-        boardView2.setOnTouchListener(new View.OnTouchListener() {
+        boardView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
@@ -77,9 +75,7 @@ public class GameActivity_1088 extends AppCompatActivity{
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
         viewHolder.winnerText = findViewById(R.id.winner_text);
         viewHolder.winnerText.setVisibility(View.GONE);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,16 +95,16 @@ public class GameActivity_1088 extends AppCompatActivity{
 
     private void buildCells() {
 
-        cells2 = new ImageView[NUM_ROWS][NUM_COLS];
-        if (cells2 != null) {
+        cells = new ImageView[NUM_ROWS][NUM_COLS];
+        if (cells != null) {
             Log.d(TAG, " entered");
             for (int r = 0; r < NUM_ROWS; r++) {
-                ViewGroup row = (ViewGroup) ((ViewGroup) boardView2).getChildAt(r);
+                ViewGroup row = (ViewGroup) ((ViewGroup) boardView).getChildAt(r);
                 row.setClipChildren(false);
                 for (int c = 0; c < NUM_COLS; c++) {
                     ImageView imageView = (ImageView) row.getChildAt(c);
                     imageView.setImageResource(android.R.color.transparent);
-                    cells2[r][c] = imageView;
+                    cells[r][c] = imageView;
                 }
             }
         }
@@ -119,12 +115,12 @@ public class GameActivity_1088 extends AppCompatActivity{
     }
 
     private void drop(int col) {
-        if (board2.hasWinner)
+        if (board.hasWinner)
             return;
-        int row = board2.lastAvailableRow(col);
+        int row = board.lastAvailableRow(col);
         if (row == -1)
             return;
-        final ImageView cell = cells2[row][col];
+        final ImageView cell = cells[row][col];
         float move = -(cell.getHeight() * row + cell.getHeight() + 15);
         cell.setY(move);
         cell.setImageResource(resourceForTurn());
@@ -132,44 +128,36 @@ public class GameActivity_1088 extends AppCompatActivity{
         anim.setDuration(850);
         anim.setFillAfter(true);
         cell.startAnimation(anim);
-        board2.occupyCell(col, row);
-        if (board2.checkForWin(col, row)) {
+        board.occupyCell(col, row);
+        if (board.checkForWin(col, row)) {
             win();
-
         } else {
             changeTurn();
         }
     }
 
     private void win() {
-        int color = (board2.turn == Board_1088.Turn.FIRST) ? getResources().getColor(R.color.primary_player) : getResources().getColor(R.color.secondary_player);
+        int color = board.turn == Board.Turn.FIRST ? getResources().getColor(R.color.primary_player) : getResources().getColor(R.color.secondary_player);
         viewHolder.winnerText.setTextColor(color);
         viewHolder.winnerText.setVisibility(View.VISIBLE);
-        ArrayList<ImageView> winseq = board2.getWinDiscs(cells2);
-        //ArrayList<ImageView> winDiscs = board2.getWinDiscs(boardView2.);
 
-
-        // Changes by Avery
-        updateScores((board2.turn == Board_1088.Turn.FIRST) ? getPlayerOneName() : getPlayerTwoName());
-        alert((board2.turn == Board_1088.Turn.FIRST) ? getPlayerOneName() : getPlayerTwoName());
-        // End of Avery's changes
     }
 
     private void changeTurn() {
-        board2.toggleTurn();
+        board.toggleTurn();
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
     }
 
     private int colAtX(float x) {
-        float colWidth = cells2[0][0].getWidth();
+        float colWidth = cells[0][0].getWidth();
         int col = (int) x / (int) colWidth;
-        if (col < 0 || col > 10)
+        if (col < 0 || col > 6)
             return -1;
         return col;
     }
 
     private int resourceForTurn() {
-        switch (board2.turn) {
+        switch (board.turn) {
             case FIRST:
                 return R.drawable.red;
             case SECOND:
@@ -179,55 +167,14 @@ public class GameActivity_1088 extends AppCompatActivity{
     }
 
     private void reset() {
-        board2.reset();
+        board.reset();
         viewHolder.winnerText.setVisibility(View.GONE);
         viewHolder.turnIndicatorImageView.setImageResource(resourceForTurn());
         for (int r=0; r<NUM_ROWS; r++) {
             for (int c=0; c<NUM_COLS; c++) {
-                cells2[r][c].setImageResource(android.R.color.transparent);
+                cells[r][c].setImageResource(android.R.color.transparent);
             }
         }
     }
 
-
-    // Added by Avery Norris
-    private void updateScores(String playerName) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        int score;
-
-        score = preferences.getInt(playerName, 0);
-        score++;
-        editor.putInt(playerName, score);
-        editor.apply();
-    }
-
-    private void alert(String playerName) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("New Score!");
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int score = preferences.getInt(playerName, 0);
-        String print = playerName + "'s score is now: " + score + "!";
-        alertDialog.setMessage(print);
-
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int i) {
-                dialog.dismiss();
-            }
-        });
-        alertDialog.show();
-    }
-
-    private String getPlayerOneName() {
-        Bundle extras = getIntent().getExtras();
-        String name = extras.getString("PLAYER1NAME", "Player 1");
-        return name;
-    }
-
-    private String getPlayerTwoName() {
-        Bundle extras = getIntent().getExtras();
-        String name = extras.getString("PLAYER2NAME", "Player 2");
-        return name;
-    }
-    // End of Avery's new functions
 }
