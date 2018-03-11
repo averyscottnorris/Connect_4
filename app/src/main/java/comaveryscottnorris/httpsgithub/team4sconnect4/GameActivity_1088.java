@@ -2,6 +2,7 @@ package comaveryscottnorris.httpsgithub.team4sconnect4;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -223,15 +224,60 @@ public class GameActivity_1088 extends AppCompatActivity{
 
     private void alert(String playerName) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("New Score!");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         int score = preferences.getInt(playerName, 0);
-        String print = playerName + "'s score is now: " + score + "!";
+        final int p1score = (board2.turn == Board_1088.Turn.FIRST) ? ( getPlayerOneScore() + 1 ) : getPlayerOneScore() ;
+        final int p2score = (board2.turn == Board_1088.Turn.FIRST) ? getPlayerTwoScore() : ( getPlayerTwoScore() + 1 ) ;
+        String title = "";
+        String print = "";
+
+        // If no more rounds, then declare winner or tie
+        if(getNumberRounds() <= 1) {
+            if(p1score > p2score) {
+                title += getPlayerOneName() + " is the winner!!\n";
+            }
+            else if(p1score < p2score) {
+                title += getPlayerTwoName() + " is the winner!!\n";
+            }
+            else {
+                title += getPlayerOneName() + " and " + getPlayerTwoName() + " have tied!!\n";
+            }
+        }
+        else {
+            title += "Score!";
+        }
+
+        alertDialog.setTitle(title);
+        print += playerName + "'s total score is now: " + score + "!\n";
+        // Print how many rounds the each player has won
+        print += getPlayerOneName() + " has won " + p1score + " rounds!\n";
+        print += getPlayerTwoName() + " has won " + p2score + " rounds!\n";
+        print +=  "Rounds remaining: " + (getNumberRounds()-1);
         alertDialog.setMessage(print);
 
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int i) {
                 dialog.dismiss();
+                // Check to see if multiple rounds is in progress, if so start new game activity
+                // with same info and current-1 number of rounds. (switch P1 and P2 each round?)
+                if (getNumberRounds() > 1) {
+                    Intent myIntent = new Intent(GameActivity_1088.this, GameActivity_1088.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("PLAYER1NAME", getPlayerTwoName());
+                    bundle.putString("PLAYER2NAME", getPlayerOneName());
+                    bundle.putInt("NUMBEROFROUNDS", (getNumberRounds()-1) );
+                    // If player 1 won, then add one to their score
+                    bundle.putInt("PLAYER2SCORE", p1score );
+                    // If player 2 won, then add one to their score
+                    bundle.putInt("PLAYER1SCORE", p2score );
+                    myIntent.putExtras(bundle);
+                    startActivity(myIntent);
+                }
+                else {
+                    // No rounds left, go back to choose game/names page
+                    Intent myIntent = new Intent(GameActivity_1088.this, Choose_Name_2P.class);
+                    startActivity(myIntent);
+                }
             }
         });
         alertDialog.show();
@@ -247,6 +293,25 @@ public class GameActivity_1088 extends AppCompatActivity{
         Bundle extras = getIntent().getExtras();
         String name = extras.getString("PLAYER2NAME", "Player 2");
         return name;
+    }
+
+    // Obtains number of rounds desired from extras
+    private Integer getNumberRounds() {
+        Bundle extras = getIntent().getExtras();
+        Integer rounds = extras.getInt("NUMBEROFROUNDS", 1);
+        return rounds;
+    }
+
+    private Integer getPlayerOneScore() {
+        Bundle extras = getIntent().getExtras();
+        Integer score = extras.getInt("PLAYER1SCORE", 0);
+        return score;
+    }
+
+    private Integer getPlayerTwoScore() {
+        Bundle extras = getIntent().getExtras();
+        Integer score = extras.getInt("PLAYER2SCORE", 0);
+        return score;
     }
     // End of Avery's new functions
 }
