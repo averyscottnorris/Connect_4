@@ -45,10 +45,14 @@ public class Choose_Name_2P extends AppCompatActivity {
                 //Save player names from text boxes
                 EditText player1Name = findViewById(R.id.player1_2P);
                 EditText player2Name = findViewById(R.id.player2_2P);
+                EditText numberOfRounds = findViewById(R.id.numberOfRounds2P);
+
 
                 // Add information to send to new activity
                 bundle.putString("PLAYER1NAME", String.valueOf(player1Name.getText()));
                 bundle.putString("PLAYER2NAME", String.valueOf(player2Name.getText()));
+                bundle.putInt("NUMBEROFROUNDS", Integer.parseInt(numberOfRounds.getText().toString()));
+
                 myIntent.putExtras(bundle);
                 startActivity(myIntent);
             }

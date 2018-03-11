@@ -42,9 +42,11 @@ public class Choose_Name_1P extends AppCompatActivity {
                     myIntent = new Intent(Choose_Name_1P.this, GameActivity_1088.class);
                 }
                 EditText player1Name = findViewById(R.id.player1_1P);
+                EditText numberOfRounds = findViewById(R.id.numberOfRounds1P);
 
                 // Add information to send to new activity
                 bundle.putString("PLAYER1NAME", String.valueOf(player1Name.getText()));
+                bundle.putInt("NUMBEROFROUNDS", Integer.parseInt(numberOfRounds.getText().toString()));
                 myIntent.putExtras(bundle);
                 startActivity(myIntent);
             }
