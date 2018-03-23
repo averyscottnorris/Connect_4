@@ -49,7 +49,7 @@ public class GameActivity_on extends AppCompatActivity{
     private Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://10.0.0.73:8080");
+            mSocket = IO.socket("http://192.168.86.32:8080");
             Log.e("Hi","connected successfully");
             String msg ="connect successfully";
             mSocket.emit("new msg",msg);
@@ -78,9 +78,9 @@ public class GameActivity_on extends AppCompatActivity{
                     case MotionEvent.ACTION_POINTER_UP:
                     case MotionEvent.ACTION_UP: {
                         int col = colAtX(motionEvent.getX());
-                        int rows=board.lastAvailableRow(col);
+                        //int rows=board.lastAvailableRow(col);
                         if (col != -1)
-                            drop_online(col,rows);
+                            drop_online(col);
                     }
                 }
                 return true;
@@ -165,10 +165,10 @@ public class GameActivity_on extends AppCompatActivity{
         }
     }
 
-    private void drop_online(int col,int row) {
+    private void drop_online(int col) {
         if (board.hasWinner)
             return;
-        row = board.lastAvailableRow(col);
+        int row = board.lastAvailableRow(col);
         if (row == -1)
             return;
         final ImageView cell = cells[row][col];
@@ -248,7 +248,7 @@ public class GameActivity_on extends AppCompatActivity{
                     } catch (JSONException e) {
                         return;
                     }
-                    drop_online(col1,row1);
+                    drop_online(col1);
                 }
             });
         }

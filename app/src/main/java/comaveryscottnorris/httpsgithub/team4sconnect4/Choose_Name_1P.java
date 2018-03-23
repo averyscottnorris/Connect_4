@@ -35,7 +35,7 @@ public class Choose_Name_1P extends AppCompatActivity {
 
                 // Set columns and rows based on size selected
                 if(selectedButtonID == R.id.radioButtonSize1) {
-                    myIntent = new Intent(Choose_Name_1P.this, GameActivity_on.class);
+                    myIntent = new Intent(Choose_Name_1P.this,GameActivity_on.class);
                 }
                 else if(selectedButtonID == R.id.radioButtonSize2) {
                     myIntent = new Intent(Choose_Name_1P.this, GameActivity_on.class);
