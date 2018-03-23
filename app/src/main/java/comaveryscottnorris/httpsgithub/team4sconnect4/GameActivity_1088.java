@@ -153,8 +153,9 @@ public class GameActivity_1088 extends AppCompatActivity{
         int color = (board2.turn == Board_1088.Turn.FIRST) ? getResources().getColor(R.color.primary_player) : getResources().getColor(R.color.secondary_player);
         viewHolder.winnerText.setTextColor(color);
         viewHolder.winnerText.setVisibility(View.VISIBLE);
-        //ArrayList<ImageView> winseq = board2.getWinDiscs(cells2);
+        ArrayList<ImageView> winseq = board2.getWinDiscs(cells2);
         //ArrayList<ImageView> winDiscs = board2.getWinDiscs(boardView2.);
+
 
         // Changes by Avery
         updateScores((board2.turn == Board_1088.Turn.FIRST) ? getPlayerOneName() : getPlayerTwoName());

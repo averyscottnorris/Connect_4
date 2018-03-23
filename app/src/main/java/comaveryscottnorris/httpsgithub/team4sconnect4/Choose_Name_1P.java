@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import comaveryscottnorris.httpsgithub.team4sconnect4.online_mode.GameActivity_on;
+
 public class Choose_Name_1P extends AppCompatActivity {
 
     @Override
@@ -33,13 +35,13 @@ public class Choose_Name_1P extends AppCompatActivity {
 
                 // Set columns and rows based on size selected
                 if(selectedButtonID == R.id.radioButtonSize1) {
-                    myIntent = new Intent(Choose_Name_1P.this, GameActivity.class);
+                    myIntent = new Intent(Choose_Name_1P.this,GameActivity_on.class);
                 }
                 else if(selectedButtonID == R.id.radioButtonSize2) {
-                    myIntent = new Intent(Choose_Name_1P.this, ai.class);
+                    myIntent = new Intent(Choose_Name_1P.this, GameActivity_on.class);
                 }
                 else {
-                    myIntent = new Intent(Choose_Name_1P.this, GameActivity_1088.class);
+                    myIntent = new Intent(Choose_Name_1P.this, GameActivity_on.class);
                 }
                 EditText player1Name = findViewById(R.id.player1_1P);
                 EditText numberOfRounds = findViewById(R.id.numberOfRounds1P);
