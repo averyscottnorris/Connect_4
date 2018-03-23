@@ -78,7 +78,6 @@ public class GameActivity_on extends AppCompatActivity{
                     case MotionEvent.ACTION_POINTER_UP:
                     case MotionEvent.ACTION_UP: {
                         int col = colAtX(motionEvent.getX());
-                        //int rows=board.lastAvailableRow(col);
                         if (col != -1)
                             drop_online(col);
                     }
@@ -169,25 +168,27 @@ public class GameActivity_on extends AppCompatActivity{
         if (board.hasWinner)
             return;
         int row = board.lastAvailableRow(col);
-        if (row == -1)
-            return;
-        final ImageView cell = cells[row][col];
-        float move = -(cell.getHeight() * row + cell.getHeight() + 15);
-        cell.setY(move);
-        cell.setImageResource(resourceForTurn());
-        TranslateAnimation anim = new TranslateAnimation(0, 0, 0, Math.abs(move));
-        anim.setDuration(850);
-        anim.setFillAfter(true);
-        cell.startAnimation(anim);
-        board.occupyCell(col, row);
-        String pos=row+","+col+","+board.turn;
-        mSocket.emit("call",pos);
-        if (board.checkForWin(col, row)) {
-            win();
-        } else {
-            changeTurn();
+            if (row == -1)
+                return;
+
+
+            final ImageView cell = cells[row][col];
+            float move = -(cell.getHeight() * row + cell.getHeight() + 15);
+            cell.setY(move);
+            cell.setImageResource(resourceForTurn());
+            TranslateAnimation anim = new TranslateAnimation(0, 0, 0, Math.abs(move));
+            anim.setDuration(850);
+            anim.setFillAfter(true);
+            cell.startAnimation(anim);
+            board.occupyCell(col, row);
+            String pos = row + "," + col + "," + board.turn;
+            mSocket.emit("call", pos);
+            if (board.checkForWin(col, row)) {
+                win();
+            } else {
+                changeTurn();
+            }
         }
-    }
 
     private void win() {
         int color = board.turn == Board_on.Turn.FIRST ? getResources().getColor(R.color.primary_player) : getResources().getColor(R.color.secondary_player);
